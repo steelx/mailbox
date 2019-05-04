@@ -30,10 +30,6 @@ const Inbox = ({ classes }) => {
         getMailsAsync()
     }, []);
 
-    useEffect(() => {
-        dispatch({ type: SET_UNREAD_COUNT, payload: state.mails.filter(m => !!m.unread).length });
-    }, [state]);
-
     async function getMailsAsync() {
         setLoading(true);
         const { getMails } = await client.request(GET_MAILS_QUERY);

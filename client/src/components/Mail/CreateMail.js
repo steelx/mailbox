@@ -18,13 +18,13 @@ const CreateMail = ({ classes }) => {
   const { state, dispatch } = useContext(Context);
   const [ title, setTitle ] = useState("");
   const [ content, setContent ] = useState("");
-  const [ from, setFrom ] = useState("");
+  const [ to, setTo ] = useState("");
   const [ processing, setProcessing ] = useState(false);
 
   function resetForm() {
     setTitle("");
     setContent("");
-    setFrom("");
+    setTo("");
     dispatch({type: DELETE_DRAFT_MAIL});
   }
 
@@ -33,8 +33,8 @@ const CreateMail = ({ classes }) => {
     setProcessing(true);
 
     try {
-      // const { title, content, from, unread} = state.draftMail;
-      const {createMail} = await client.request(CREATE_MAIL_MUTATION, {title, content, from, unread: true});
+      // const { title, content, to, unread} = state.draftMail;
+      const {createMail} = await client.request(CREATE_MAIL_MUTATION, {title, content, to, unread: true});
 
       console.log("MAIL CREATED => ", createMail);
       dispatch({type: CREATE_MAIL, payload: createMail})
@@ -55,15 +55,15 @@ const CreateMail = ({ classes }) => {
       <div className={classes.contentField}>
         <TextField
           name="title"
-          label="Title"
-          placeholder="Insert title"
+          label="Subject"
+          placeholder="Insert Subject"
           onChange={(e) => setTitle(e.target.value)}
         />
         <TextField
-          name="from"
-          label="From User"
-          placeholder="Insert from name"
-          onChange={(e) => setFrom(e.target.value)}
+          name="to"
+          label="To email"
+          placeholder="to"
+          onChange={(e) => setTo(e.target.value)}
         />
       </div>
       <div className={classes.contentField}>
@@ -75,7 +75,7 @@ const CreateMail = ({ classes }) => {
           <ClearIcon className={classes.leftIcon} /> Discard
         </Button>
         <Button className={classes.button} type="submit" variant="contained" color="primary"
-          disabled={!title.trim() || !content.trim() || !from.trim() || processing}
+          disabled={!title.trim() || !content.trim() || !to.trim() || processing}
         >
           <SaveIcon className={classes.rightIcon} /> Save
         </Button>

@@ -40,7 +40,7 @@ export function UserReducer(state, action) {
                 draftMail: {
                     title: "",
                     content: "",
-                    from: "",
+                    to: "",
                     unread: true
                 }
             };
@@ -67,7 +67,8 @@ export function UserReducer(state, action) {
             const sorted = action.payload.sort((a,b) => compare_desc(new Date(a.createdAt), new Date(b.createdAt)));
             return {
                 ...state,
-                mails: sorted
+                mails: sorted,
+                unreadCount: sorted.filter(m => !!m.unread).length
             };
         }
         
@@ -81,31 +82,41 @@ export function UserReducer(state, action) {
             })
             return {
                 ...state,
-                mails: sorted
+                mails: sorted,
+                unreadCount: sorted.filter(m => !!m.unread).length
             };
         }
 
-        case CREATE_MAIL:
+        case CREATE_MAIL: {
             const newMail = action.payload;
             const prevMails = state.mails.filter(p => p._id !== newMail._id);
+            const mails = [newMail, ...prevMails];
             return {
                 ...state,
-                mails: [newMail, ...prevMails]
+                mails,
+                unreadCount: mails.filter(m => !!m.unread).length
             };
+        }
 
-        case DELETE_MAIL:
+        case DELETE_MAIL: {
             const deleteMail = action.payload;
+            const mails = state.mails.filter(p => p._id !== deleteMail._id);
             return {
                 ...state,
-                mails: state.mails.filter(p => p._id !== deleteMail._id)
+                mails,
+                unreadCount: mails.filter(m => !!m.unread).length
             };
+        }
 
-        case DELETE_MAILS:
+        case DELETE_MAILS: {
             const deleteMailIds = action.payload;
+            const mails = state.mails.filter(p => deleteMailIds.indexOf(p._id) === -1);
             return {
                 ...state,
-                mails: state.mails.filter(p => deleteMailIds.indexOf(p._id) === -1)
+                mails,
+                unreadCount: mails.filter(m => !!m.unread).length
             };
+        }
 
         default:
             return state;
