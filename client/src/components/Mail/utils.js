@@ -1,3 +1,4 @@
+import isToday from "date-fns/is_today";
 
 export function formatDate(unixTime) {
     const date = new Date(unixTime),
@@ -15,4 +16,10 @@ export function formatAMPM(date) {
     hours = hours ? hours : 12; // the hour '0' should be '12'
     minutes = minutes < 10 ? '0' + minutes : minutes;
     return hours + ':' + minutes + ' ' + ampm;
+}
+
+export function displayDateTime(createdAt) {
+    const mailDate = new Date(createdAt),
+    isNewMail = isToday(mailDate)
+    return isNewMail ? formatAMPM(mailDate) : formatDate(createdAt);
 }

@@ -16,12 +16,15 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import MailIcon from '@material-ui/icons/Mail';
 import UnreadCountBadge from './Mail/UnreadBadge';
 import Context from '../store/context';
+import { CHANGE_INBOX } from '../store/reducer';
 
 export const drawerWidth = 240;
 
 const Sidebar = ({ classes, theme, open, handleDrawerClose }) => {
-    const {state} = useContext(Context);
-
+    const {state, dispatch} = useContext(Context);
+    function renderRedirect(payload) {
+        dispatch({type: CHANGE_INBOX, payload})
+    }
     return (
         <Drawer
             variant="permanent"
@@ -44,11 +47,11 @@ const Sidebar = ({ classes, theme, open, handleDrawerClose }) => {
             </div>
             <Divider />
             <List>
-                <ListItem button>
+                <ListItem button onClick={() => renderRedirect(true)}>
                     <ListItemIcon><UnreadCountBadge /></ListItemIcon>
                     <ListItemText primary={`Inbox (${state.unreadCount}/${state.mails.length})`} />
                 </ListItem>
-                <ListItem button>
+                <ListItem button onClick={() => renderRedirect(false)}>
                     <ListItemIcon><MailIcon /></ListItemIcon>
                     <ListItemText primary="Sent items" />
                 </ListItem>

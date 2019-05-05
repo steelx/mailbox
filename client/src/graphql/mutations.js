@@ -1,9 +1,10 @@
 export const CREATE_MAIL_MUTATION = `
-    mutation($title: String, $content: String, $from: String, $unread: Boolean) {
+    mutation($title: String, $content: String, $from: String, $to: String, $unread: Boolean) {
         createMail(input: {
             title: $title
             content: $content
             from: $from
+            to: $to
             unread: $unread
         }) {
             _id

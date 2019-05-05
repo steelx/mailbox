@@ -34,11 +34,11 @@ const CreateMail = ({ classes }) => {
 
     try {
       // const { title, content, to, unread} = state.draftMail;
-      const {createMail} = await client.request(CREATE_MAIL_MUTATION, {title, content, to, unread: true});
+      const {createMail} = await client.request(CREATE_MAIL_MUTATION, {
+        title, content, from:state.currentUser.email, to, unread: true
+      });
 
-      console.log("MAIL CREATED => ", createMail);
-      dispatch({type: CREATE_MAIL, payload: createMail})
-      dispatch({ type: SET_UNREAD_COUNT, payload: state.unreadCount + 1 });
+      dispatch({type: CREATE_MAIL, payload: createMail});
       setProcessing(false);
     } catch(e) {
       console.log("Submittion error: ", e);

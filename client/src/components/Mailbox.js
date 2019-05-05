@@ -1,17 +1,16 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 
-
 import Inbox from './Mail/Inbox';
+import SentMails from './Mail/SentMails';
 import InboxSidekick from './Mail/InboxSidekick';
 
-const Mailbox = ({classes}) => {
-
+const Mailbox = ({classes, isInbox=true}) => {
 
     return (
         <div className={classes.root}>
             <InboxSidekick />
-            <Inbox />
+            { isInbox ? <Inbox /> : <SentMails /> }
         </div>
     );
 };

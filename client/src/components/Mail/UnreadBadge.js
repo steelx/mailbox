@@ -6,6 +6,9 @@ import Context from '../../store/context';
 
 const UnreadCountBadge = () => {
     const {state} = useContext(Context);
+    if (state.unreadCount === 0) {
+        return null;
+    }
     return (
         <Badge badgeContent={state.unreadCount} max={999} color="primary">
             <MailIcon />

@@ -18,6 +18,7 @@ export const GET_MAILS_QUERY = `
     title
     content
     unread
+    to
     from
     author {
       _id

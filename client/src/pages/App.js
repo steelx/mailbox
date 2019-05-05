@@ -1,15 +1,17 @@
-import React, {useState} from "react";
+import React, { useState, useContext } from "react";
 import withRoot from "../withRoot";
 
 import { withStyles } from "@material-ui/core/styles";
 import Header from "../components/Header";
 import Mailbox from "../components/Mailbox";
 import Sidebar from "../components/Sidebar";
-import {drawerWidth} from '../components/Sidebar';
+import { drawerWidth } from '../components/Sidebar';
+import Context from "../store/context";
 
-const App = ({classes}) => {
+const App = ({ classes }) => {
+  const {state} = useContext(Context);
   const [open, setOpen] = useState(false);
-  function handleDrawerOpen(){
+  function handleDrawerOpen() {
     setOpen(true);
   }
   function handleDrawerClose() {
@@ -21,7 +23,7 @@ const App = ({classes}) => {
       <Header open={open} handleDrawerOpen={handleDrawerOpen} />
       <Sidebar open={open} handleDrawerClose={handleDrawerClose} />
       <main className={classes.content}>
-        <Mailbox />
+        <Mailbox isInbox={state.isInbox} />
       </main>
     </div>
   );

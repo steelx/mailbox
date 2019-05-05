@@ -6,7 +6,9 @@ const Context = createContext({
     isAuth: false,
     draftMail: null,
     mails: [],
-    unreadCount: 0
+    sent: [],
+    unreadCount: 0,
+    isInbox: true
 });
 
 export default Context;
