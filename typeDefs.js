@@ -13,6 +13,7 @@ module.exports = gql`
         createdAt: String
         title: String
         content: String
+        to: String
         from: String
         unread: Boolean
         author: User
@@ -34,6 +35,7 @@ module.exports = gql`
         title: String
         content: String
         from: String
+        to: String
         unread: Boolean
     }
 

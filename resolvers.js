@@ -50,18 +50,6 @@ module.exports = {
                 console.log("ERROR markAsRead:", e);
                 return false;
             }
-        }),
-        markAsUnread: authenticated(async (root, args, ctx) => {
-            try {
-                await Mail.updateMany(
-                    { _id: { $in: args.mailIds } },
-                    { $set: { unread : true } }
-                ).exec();
-                return true;
-            } catch(e) {
-                console.log("ERROR markAsUnread:", e);
-                return false;
-            }
         })
     }
 }

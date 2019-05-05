@@ -4,6 +4,7 @@ const MailSchema = new mongoose.Schema({
     createdAt: String,
     title: String,
     content: String,
+    to: String,
     from: String,
     unread: Boolean,
     author: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
