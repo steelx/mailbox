@@ -1,7 +1,7 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 
-import Inbox from './Mail/Inbox';
+import Inbox from './Mail/inbox/Inbox';
 import SentMails from './Mail/SentMails';
 import InboxSidekick from './Mail/InboxSidekick';
 

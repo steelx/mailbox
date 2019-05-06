@@ -9,12 +9,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-import {displayDateTime} from './utils';
-import Context from '../../store/context';
-import { useClient } from "../Auth/client";
-import { GET_MAILS, DELETE_MAILS, SET_UNREAD_COUNT, MARK_AS_READ } from '../../store/reducer';
-import { GET_MAILS_QUERY } from '../../graphql/queries';
-import { DELETE_MAILS_MUTATION, MARK_AS_READ_MUTATION } from "../../graphql/mutations";
+import {displayDateTime} from '../utils';
+import Context from '../../../store/context';
+import { useClient } from "../../Auth/client";
+import { GET_MAILS, DELETE_MAILS, SET_UNREAD_COUNT, MARK_AS_READ } from '../../../store/reducer';
+import { GET_MAILS_QUERY } from '../../../graphql/queries';
+import { DELETE_MAILS_MUTATION, MARK_AS_READ_MUTATION } from "../../../graphql/mutations";
 import InboxHead from './InboxHead';
 
 const Inbox = ({ classes }) => {

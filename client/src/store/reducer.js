@@ -7,6 +7,7 @@ export const CREATE_DRAFT_MAIL = "CREATE_DRAFT_MAIL";
 export const UPDATE_DRAFT_MAIL = "UPDATE_DRAFT_MAIL";
 export const DELETE_DRAFT_MAIL = "DELETE_DRAFT_MAIL";
 export const GET_MAILS = "GET_MAILS";
+export const UPDATE_MAILS = "UPDATE_MAILS";
 export const CREATE_MAIL = "CREATE_MAIL";
 export const DELETE_MAIL = "DELETE_MAIL";
 export const DELETE_MAILS = "DELETE_MAILS";
@@ -73,6 +74,14 @@ export function UserReducer(state, action) {
                 mails: received,
                 sent,
                 unreadCount: received.filter(m => !!m.unread).length
+            };
+        }
+
+        case UPDATE_MAILS: {
+            const sorted = action.payload.sort((a,b) => compare_desc(new Date(a.createdAt), new Date(b.createdAt)));
+            return {
+                ...state,
+                mails: sorted
             };
         }
         

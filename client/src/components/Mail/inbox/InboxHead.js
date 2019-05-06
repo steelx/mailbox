@@ -6,15 +6,18 @@ import Button from '@material-ui/core/Button';
 import RefreshIcon from '@material-ui/icons/ThreeSixty';
 import UnreadIcon from '@material-ui/icons/RemoveRedEye';
 import DeleteIcon from '@material-ui/icons/Delete';
+import SearchBox from './SearchBox';
 
 const InboxHead = ({ classes, unreadCount, onDelete, onMarkUnread, onRefresh }) => {
 
-
     return (
         <div className={classes.root}>
-            <Typography className={classes.text} variant="h5" gutterBottom>
-                Inbox {unreadCount && `(${unreadCount})`}
-            </Typography>
+            <div className={classes.headertop}>
+                <Typography className={classes.text} variant="h5" gutterBottom>
+                    Inbox {unreadCount && `(${unreadCount})`}
+                </Typography>
+                <SearchBox />
+            </div>
             
             <Button variant="outlined" className={classes.button} onClick={onRefresh}>
                 <RefreshIcon /> Refresh
@@ -38,10 +41,14 @@ const styles = (theme) => ({
         paddingLeft: theme.spacing.unit * 2,
         paddingRight: theme.spacing.unit * 2,
     },
+    headertop: {
+        display: "flex",
+        justifyContent : "space-between"
+    },
     button: {
         marginLeft: "10px",
         fontSize: "12px"
-    }
+    },
 });
 
 export default withStyles(styles)(InboxHead);

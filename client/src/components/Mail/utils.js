@@ -1,4 +1,6 @@
 import isToday from "date-fns/is_today";
+import { useClient } from "../Auth/client";
+import { GET_MAILS_QUERY } from "../../graphql/queries";
 
 export function formatDate(unixTime) {
     const date = new Date(unixTime),
@@ -22,4 +24,10 @@ export function displayDateTime(createdAt) {
     const mailDate = new Date(createdAt),
     isNewMail = isToday(mailDate)
     return isNewMail ? formatAMPM(mailDate) : formatDate(createdAt);
+}
+
+export async function getMailsAsync() {
+    const client = useClient()
+    const { getMails } = await client.request(GET_MAILS_QUERY);
+    return getMails;
 }
