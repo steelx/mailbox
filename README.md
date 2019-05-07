@@ -26,3 +26,5 @@ Then run the client
 ```bash
 cd client && npm start
 ```
+
+![mailbox](https://user-images.githubusercontent.com/3184210/57291775-bb104600-70dd-11e9-8f57-6cd2ef4f49cd.png)
